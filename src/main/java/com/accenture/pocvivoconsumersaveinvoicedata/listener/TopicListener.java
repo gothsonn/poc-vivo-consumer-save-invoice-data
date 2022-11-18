@@ -3,7 +3,9 @@ package com.accenture.pocvivoconsumersaveinvoicedata.listener;
 import com.accenture.pocvivoconsumersaveinvoicedata.dao.FinancialAccountDao;
 import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountCreate;
 import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountCreateEvent;
+import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountCreateEventPayload;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -25,18 +27,21 @@ public class TopicListener {
     @Value("${topic.name.consumer")
     private String topicName;
     private final ObjectMapper objectMapper;
-
+    Gson gson = new Gson();
     @KafkaListener(topics = "${topic.name.consumer}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(ConsumerRecord<String, String> payload){
         log.info("Tópico: {}", topicName);
         log.info("key: {}", payload.key());
         log.info("Headers: {}", payload.headers());
         log.info("Partion: {}", payload.partition());
+        log.info("Payload: {}", payload.value());
         try {
-            FinancialAccountCreate consumeToSaveInvoice =  objectMapper.readValue(payload.value(), FinancialAccountCreate.class);
-            System.out.println(consumeToSaveInvoice);
-            dao.createFinancialAccount(consumeToSaveInvoice);
-            log.info("FinancialAccountCreateEvent: {}", consumeToSaveInvoice);
+            FinancialAccountCreateEvent consumeToFinancial =  objectMapper.readValue(payload.value(), FinancialAccountCreateEvent.class);
+//            System.out.println(gson.toJson(payload.value()));
+//            FinancialAccountCreate consumeToSaveInvoice =  objectMapper.readValue(consumeToFinancial.getPayload().getFinancialAccount(), FinancialAccountCreate.class);
+            System.out.println(consumeToFinancial);
+            dao.createFinancialAccount(consumeToFinancial.getPayload().getFinancialAccount());
+            log.info("FinancialAccountCreateEvent: {}", consumeToFinancial.getPayload().getFinancialAccount());
 
         } catch (IOException e) {
             log.error("Couldn't serialize response for content type application/json", e);

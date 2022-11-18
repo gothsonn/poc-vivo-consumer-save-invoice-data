@@ -3,6 +3,7 @@ package com.accenture.pocvivoconsumersaveinvoicedata.dao;
 import com.accenture.pocvivoconsumersaveinvoicedata.helper.ApiHelper;
 import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccount;
 import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountCreate;
+import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountCreateEventPayload;
 import com.accenture.pocvivoconsumersaveinvoicedata.model.FinancialAccountUpdate;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -98,28 +99,8 @@ public class FinancialAccountDao {
     }
 
 
-    public FinancialAccount createFinancialAccount(FinancialAccountCreate financialAccountCreate) {
-        var account = new FinancialAccount();
-
-        account.setId(java.util.UUID.randomUUID().toString());
-        account.setAccountType(financialAccountCreate.getAccountType());
-        account.setDescription(financialAccountCreate.getDescription());
-        account.setLastModified(OffsetDateTime.now());
-        account.setName(financialAccountCreate.getName());
-        account.setState(financialAccountCreate.getState());
-        account.setAccountBalance(financialAccountCreate.getAccountBalance());
-        account.setAccountRelationship(financialAccountCreate.getAccountRelationship());
-        account.setContact(financialAccountCreate.getContact());
-        account.setCreditLimit(financialAccountCreate.getCreditLimit());
-        account.setRelatedParty(financialAccountCreate.getRelatedParty());
-        account.setTaxExemption(financialAccountCreate.getTaxExemption());
-        account.state("Pending");
-//        account.setAtBaseType(financialAccountCreate.getAtBaseType());
-//        account.setAtSchemaLocation(financialAccountCreate.getAtSchemaLocation());
-//        account.setAtType(financialAccountCreate.getAtType());
-
+    public FinancialAccount createFinancialAccount(FinancialAccount account) {
         collection.insertOne(account);
-
         return account;
     }
 
