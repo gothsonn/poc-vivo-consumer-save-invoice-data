@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface SpringProductRepositories extends MongoRepository<ProductEntity, String> {
     public List<Product> listAll();
+    public void saveProduct(Product product);
 }

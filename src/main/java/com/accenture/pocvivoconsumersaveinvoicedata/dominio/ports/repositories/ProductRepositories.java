@@ -9,7 +9,7 @@ public interface ProductRepositories {
 
     List<Product> listAll();
 
-    void save(ProductEntity productEntity);
+    void save(Product product);
 
 
 }
