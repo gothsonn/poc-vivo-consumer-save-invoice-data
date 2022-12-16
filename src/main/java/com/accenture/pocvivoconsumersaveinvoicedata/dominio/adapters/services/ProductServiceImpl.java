@@ -20,8 +20,8 @@ public class ProductServiceImpl implements ProductServicePorts {
     @Override
     public void createProduct(ProductDto productDTO) {
         try{
-            ProductEntity productEntity = new ProductEntity(productDTO);
-            this.productRepositories.save(productEntity);
+            Product product = new Product(productDTO);
+            this.productRepositories.save(product);
         }
         catch(Exception ex) {
             System.out.println("Something went wrong." + ex);

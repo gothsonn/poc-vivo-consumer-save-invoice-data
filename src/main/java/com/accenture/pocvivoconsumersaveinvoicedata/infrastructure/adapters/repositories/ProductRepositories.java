@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -29,6 +30,18 @@ public class ProductRepositories implements SpringProductRepositories {
         return produtoEntities.stream().map(ProductEntity::toProduto).collect(Collectors.toList());
     }
 
+    @Override
+    public void saveProduct(Product product) {
+        ProductEntity productEntity;
+        if (Objects.isNull(product.getId()))
+            productEntity = new ProductEntity(product);
+        else {
+            productEntity = this.springProductRepositories.findById(product.getId()).get();
+            productEntity.update(product);
+        }
+
+        this.springProductRepositories.save(productEntity);
+    }
 
     @Override
     public <S extends ProductEntity> S save(S entity) {
