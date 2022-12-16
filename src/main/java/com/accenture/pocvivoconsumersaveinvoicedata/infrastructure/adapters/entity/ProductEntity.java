@@ -1,18 +1,12 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity;
 
 import com.accenture.pocvivoconsumersaveinvoicedata.dominio.form.ProductForm;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
-@Document(collection="Product")
+@Document("Product")
 public class ProductEntity {
-
     @Id
-    @Column(name = "id", nullable = false)
     private String id;
 
     private String name;
