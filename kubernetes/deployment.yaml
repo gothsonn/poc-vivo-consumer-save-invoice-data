@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: consumer-save-invoice-data
-        image: nexus.devops.dvpoc.com.br/consumer-save-invoice-data
+        image: registry.devops.dvpoc.com.br/consumer-save-invoice-data
         ports:
         - containerPort: 9000
         envFrom:
