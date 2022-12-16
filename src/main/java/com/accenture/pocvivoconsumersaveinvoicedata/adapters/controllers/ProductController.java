@@ -2,7 +2,6 @@ package com.accenture.pocvivoconsumersaveinvoicedata.adapters.controllers;
 
 import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.product.ProductDto;
 import com.accenture.pocvivoconsumersaveinvoicedata.dominio.ports.interfaces.ProductServicePorts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,8 +10,12 @@ import java.util.List;
 @RequestMapping("produtos")
 public class ProductController {
 
-    @Autowired
-    private ProductServicePorts productServicePorts;
+
+    private final ProductServicePorts productServicePorts;
+
+    public ProductController(ProductServicePorts productServicePorts) {
+        this.productServicePorts = productServicePorts;
+    }
 
     @PostMapping
     public void createProducts(@RequestBody ProductDto productDto) {
