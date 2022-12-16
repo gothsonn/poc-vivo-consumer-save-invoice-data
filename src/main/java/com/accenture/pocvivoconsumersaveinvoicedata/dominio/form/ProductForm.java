@@ -1,18 +1,18 @@
-package com.accenture.pocvivoconsumersaveinvoicedata.dominio;
+package com.accenture.pocvivoconsumersaveinvoicedata.dominio.form;
 
 
 import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.product.ProductDto;
 
-public class Product {
+public class ProductForm {
 
     private String id;
     private String name;
     private String description;
 
-    public Product() {
+    public ProductForm() {
     }
 
-    public Product(String id, String name, String description) {
+    public ProductForm(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,7 +30,7 @@ public class Product {
         return description;
     }
 
-    public Product(ProductDto productDto) {
+    public ProductForm(ProductDto productDto) {
         this.id = productDto.getId();
         this.name = productDto.getName();
         this.description = productDto.getDescription();

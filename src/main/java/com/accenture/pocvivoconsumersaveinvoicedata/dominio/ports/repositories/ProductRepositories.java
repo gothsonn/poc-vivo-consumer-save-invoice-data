@@ -1,15 +1,12 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.dominio.ports.repositories;
 
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.Product;
-import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity.ProductEntity;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.form.ProductForm;
 
 import java.util.List;
 
 public interface ProductRepositories {
 
-    List<Product> listAll();
-
-    void save(Product product);
-
+    List<ProductForm> listAll();
+    void save(ProductForm productForm);
 
 }

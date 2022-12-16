@@ -1,13 +1,11 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity;
 
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.Product;
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.product.ProductDto;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.form.ProductForm;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 @Document(collection="Product")
@@ -32,22 +30,22 @@ public class ProductEntity {
     public ProductEntity() {
     }
 
-    public ProductEntity(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();;
-        this.description = product.getDescription();
+    public ProductEntity(ProductForm productForm) {
+        this.id = productForm.getId();
+        this.name = productForm.getName();;
+        this.description = productForm.getDescription();
     }
 
-    public void update(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();;
-        this.description = product.getDescription();
+    public void update(ProductForm productForm) {
+        this.id = productForm.getId();
+        this.name = productForm.getName();;
+        this.description = productForm.getDescription();
     }
 
 
 
-    public Product toProduto() {
-        return new Product(this.id, this.name, this.description);
+    public ProductForm toProduto() {
+        return new ProductForm(this.id, this.name, this.description);
     }
 
 }

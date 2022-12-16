@@ -5,6 +5,5 @@ import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.product.Product
 public interface ProductServicePorts {
 
     Object findProducts();
-
     void createProduct(ProductDto productDto);
 }

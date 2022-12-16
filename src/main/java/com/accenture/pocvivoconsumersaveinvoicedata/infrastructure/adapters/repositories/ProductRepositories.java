@@ -1,6 +1,6 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.repositories;
 
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.Product;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.form.ProductForm;
 import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity.ProductEntity;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -25,19 +25,19 @@ public class ProductRepositories implements SpringProductRepositories {
     }
 
     @Override
-    public List<Product> listAll() {
+    public List<ProductForm> listAll() {
         List<ProductEntity> produtoEntities = this.springProductRepositories.findAll();
         return produtoEntities.stream().map(ProductEntity::toProduto).collect(Collectors.toList());
     }
 
     @Override
-    public void saveProduct(Product product) {
+    public void saveProduct(ProductForm productForm) {
         ProductEntity productEntity;
-        if (Objects.isNull(product.getId()))
-            productEntity = new ProductEntity(product);
+        if (Objects.isNull(productForm.getId()))
+            productEntity = new ProductEntity(productForm);
         else {
-            productEntity = this.springProductRepositories.findById(product.getId()).get();
-            productEntity.update(product);
+            productEntity = this.springProductRepositories.findById(productForm.getId()).get();
+            productEntity.update(productForm);
         }
 
         this.springProductRepositories.save(productEntity);
