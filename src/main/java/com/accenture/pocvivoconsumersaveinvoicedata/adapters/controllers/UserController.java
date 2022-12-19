@@ -14,9 +14,7 @@ import java.util.List;
 public class UserController {
 
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
-
 	private final UserRepository userRepository;
-
 	private final UserDAL userDAL;
 
 	public UserController(UserRepository userRepository, UserDAL userDAL) {
@@ -24,19 +22,19 @@ public class UserController {
 		this.userDAL = userDAL;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@PostMapping("/create")
 	public User addNewUsers(@RequestBody User user) {
 		LOG.info("Saving user.");
 		return userRepository.save(user);
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("")
 	public List<User> getAllUsers() {
 		LOG.info("Getting all users.");
 		return userRepository.findAll();
 	}
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	@GetMapping("/{userId}")
 	public User getUser(@PathVariable String userId) {
 		LOG.info("Getting user with ID: {}.", userId);
 		return userDAL.getUserById(userId);
@@ -52,7 +50,7 @@ public class UserController {
 	// }
 	// }
 
-	@RequestMapping(value = "/settings/{userId}", method = RequestMethod.GET)
+	@GetMapping("/settings/{userId}")
 	public Object getAllUserSettings(@PathVariable String userId) {
 		User user = userDAL.getUserById(userId);
 		if (user != null) {
@@ -62,13 +60,12 @@ public class UserController {
 		}
 	}
 
-
-	@RequestMapping(value = "/settings/{userId}/{key}", method = RequestMethod.GET)
+	@GetMapping("/settings/{userId}/{key}")
 	public String getUserSetting(@PathVariable String userId, @PathVariable String key) {
 		return userDAL.getUserSetting(userId, key);
 	}
 
-	@RequestMapping(value = "/settings/{userId}/{key}/{value}", method = RequestMethod.GET)
+	@GetMapping("/settings/{userId}/{key}/{value}")
 	public String addUserSetting(@PathVariable String userId, @PathVariable String key, @PathVariable String value) {
 		User user = userDAL.getUserById(userId);
 		if (user != null) {
