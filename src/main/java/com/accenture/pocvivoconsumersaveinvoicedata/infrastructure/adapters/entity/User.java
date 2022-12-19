@@ -16,6 +16,13 @@ public class User {
 	private Date creationDate = new Date();
 	private Map<String, String> userSettings = new HashMap<>();
 
+	public User(String userId, String name, Date creationDate, Map<String, String> userSettings) {
+		this.userId = userId;
+		this.name = name;
+		this.creationDate = creationDate;
+		this.userSettings = userSettings;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
