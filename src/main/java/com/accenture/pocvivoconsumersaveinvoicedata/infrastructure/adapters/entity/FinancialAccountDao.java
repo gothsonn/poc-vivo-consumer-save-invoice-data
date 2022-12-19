@@ -1,8 +1,8 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity;
 
 import com.accenture.pocvivoconsumersaveinvoicedata.dominio.helper.ApiHelper;
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.financial.FinancialAccount;
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.financial.FinancialAccountUpdate;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.FinancialAccount;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.FinancialAccountUpdate;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;

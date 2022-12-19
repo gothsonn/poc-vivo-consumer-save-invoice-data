@@ -1,7 +1,7 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.adapters.listener;
 
 import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity.FinancialAccountDao;
-import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.financial.FinancialAccountCreateEvent;
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.FinancialAccountCreateEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
