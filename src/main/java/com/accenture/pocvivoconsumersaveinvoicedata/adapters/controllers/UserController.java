@@ -1,5 +1,6 @@
 package com.accenture.pocvivoconsumersaveinvoicedata.adapters.controllers;
 
+import com.accenture.pocvivoconsumersaveinvoicedata.dominio.dtos.UserDto;
 import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.entity.User;
 import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.repositories.UserDAL;
 import com.accenture.pocvivoconsumersaveinvoicedata.infrastructure.adapters.repositories.UserRepository;
@@ -23,9 +24,10 @@ public class UserController {
 	}
 
 	@PostMapping("/create")
-	public User addNewUsers(@RequestBody User user) {
+	public User addNewUsers(@RequestBody UserDto user) {
 		LOG.info("Saving user.");
-		return userRepository.save(user);
+		User newUser = new User(user.getUserId(), user.getName(), user.getCreationDate(), user.getUserSettings());
+		return userRepository.save(newUser);
 	}
 
 	@GetMapping("")
